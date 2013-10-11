@@ -34,3 +34,17 @@ file { "/srv/habit-rpg/config.json":
   source => "/srv/habit-rpg/config.json.example",
   require => Vcsrepo['/srv/habit-rpg']
 }
+
+exec { 'install_npm_dependencies':
+  command => 'npm install',
+  cwd => '/srv/habit-rpg',
+  path => '/usr/bin:/usr/local/bin',
+  require => File['/srv/habit-rpg/config.json']
+}
+
+exec { 'run_habitrpg':
+  command => 'grunt run:dev',
+  cwd => '/srv/habit-rpg',
+  path => '/usr/bin:/usr/local/bin',
+  require => [ Exec['install_npm_dependencies'], Package['grunt-cli'] ]
+}
