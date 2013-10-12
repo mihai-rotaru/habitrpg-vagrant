@@ -49,9 +49,16 @@ exec { 'install_npm_dependencies':
   returns => 1 # some deps fail to install, causing puppet to halt the manifest
 }
 
-exec { 'run_habitrpg':
-  command => 'grunt run:dev',
-  cwd => '/srv/habit-rpg',
-  path => '/usr/bin:/usr/local/bin',
-  require => [ Exec['install_npm_dependencies'], Package['grunt-cli'] ]
-}
+#exec { 'install_bower_dependencies':
+#  command => 'bower install',
+#  cwd => '/srv/habit-rpg',
+#  path => '/usr/bin:/usr/local/bin',
+#  require => Exec['install_npm_dependencies']
+#}
+#
+#exec { 'run_habitrpg':
+#  command => 'grunt run:dev',
+#  cwd => '/srv/habit-rpg',
+#  path => '/usr/bin:/usr/local/bin',
+#  require => [ Exec['install_bower_dependencies'], Package['grunt-cli'] ]
+#}
