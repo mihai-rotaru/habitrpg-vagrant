@@ -17,6 +17,12 @@ package { 'grunt-cli':
   require => Class['nodejs']
 }
 
+package { 'bower':
+  ensure => 'present',
+  provider => 'npm',
+  require => Class['nodejs']
+}
+
 vcsrepo { "/srv/habit-rpg":
   ensure => latest,
   provider => git,
