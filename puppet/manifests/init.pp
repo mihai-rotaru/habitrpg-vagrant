@@ -45,7 +45,8 @@ exec { 'install_npm_dependencies':
   command => 'npm install',
   cwd => '/srv/habit-rpg',
   path => '/usr/bin:/usr/local/bin',
-  require => File['/srv/habit-rpg/config.json']
+  require => File['/srv/habit-rpg/config.json'],
+  returns => 1 # some deps fail to install, causing puppet to halt the manifest
 }
 
 exec { 'run_habitrpg':
